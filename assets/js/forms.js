@@ -30,9 +30,6 @@ function validateForm() {
     } else if(selectedOption.value === "No" && leaveAMessage === "") {
         alert("Please fill out the additional info field!");
         return false;
-    }
-    
-    window.location.href = "#";
-    alert("Form submitted successfully!");
+    } 
     return true;
 }
