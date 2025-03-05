@@ -30,13 +30,9 @@ function validateForm() {
     } else if(selectedOption.value === "No" && leaveAMessage === "") {
         alert("Please fill out the additional info field!");
         return false;
-    } else {
-        alert("Form submitted successfully!");
     }
-}
-
-function redirectToHome(event) {
-    event.preventDefault(); // Prevent form from submitting normally
-    // Do your form processing here (like an API call)
-    window.location.href = "/home"; // Redirect to home page
+    
+    window.location.href = "#";
+    alert("Form submitted successfully!");
+    return true;
 }
