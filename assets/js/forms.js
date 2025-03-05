@@ -13,23 +13,43 @@ function handleRadioSelection() {
 }
 
 function validateForm() {
+
+    //constant
     const selectedOption = document.querySelector('input[name="entry.1660861660"]:checked');
-    const numbserSeat = document.getElementById("numbserSeat").value;
+    const noSeat = document.getElementById("numbserSeat").value;
     const nameOfGuests = document.getElementById("nameOfGuests").value;
-    const mobileNumber = document.getElementById("mobileNumber").value;
+    const mobileNum = document.getElementById("mobileNumber").value;
     const leaveAMessage = document.getElementById("leaveAMessage").value;
 
-    if (!selectedOption) {
-        alert("Please select an option before submitting!");
-        return false;
-    }
+    //document-Ids
+    document.getElementById("numberSeat-error").textContent = "";
+    document.getElementById("nameGuests-error").textContent = "";
+    document.getElementById("mobileNumber-error").textContent = "";
+    document.getElementById("leaveComment-error").textContent = "";
 
-    if (selectedOption.value === "Yes" && (numbserSeat === "" || nameOfGuests === "" || mobileNumber === "")) {
-        alert("Please fill out the additional info field!");
-        return false;
-    } else if(selectedOption.value === "No" && leaveAMessage === "") {
-        alert("Please fill out the additional info field!");
-        return false;
+    let isValid = true;
+
+    if(selectedOption.value === "Yes"){
+        const noSeatRegex = /^[0-5]{1}$/;
+        if (!noSeatRegex.test(noSeat)) {
+            document.getElementById("numberSeat-error").textContent = "A maximum of 5 seats allocated per group.";
+            isValid = false;
+        }
+        if(nameOfGuests === ""){
+            document.getElementById("nameGuests-error").textContent = "Required field. Cannot be left blank.";
+            isValid = false;
+        }
+        const phoneRegex = /^[0-9]{11}$/;
+        if (!phoneRegex.test(mobileNum)) {
+            document.getElementById("mobileNumber-error").textContent = "Phone must be 11 digits, starting with 09.";
+            isValid = false;
+        }
+    } else if(selectedOption.value === "No"){
+        if(leaveAMessage === ""){
+            document.getElementById("leaveComment-error").textContent = "Required field. Cannot be left blank.";
+            isValid = false;
+        }
     } 
-    return true;
+
+    return isValid;
 }

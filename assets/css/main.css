@@ -71,6 +71,11 @@ input, select, textarea {
 	appearance: none;
 }
 
+.alert {
+	color: red;
+	font-size: 17px;
+}
+
 /* Basic */
 
 	@-ms-viewport {
